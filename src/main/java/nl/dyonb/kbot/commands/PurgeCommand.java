@@ -1,7 +1,6 @@
 package nl.dyonb.kbot.commands;
 
 import discord4j.core.object.entity.Message;
-import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Permission;
 import discord4j.rest.util.PermissionSet;
 import nl.dyonb.kbot.util.command.BaseCommand;
@@ -10,7 +9,6 @@ import nl.dyonb.kbot.util.command.CommandInfo;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class PurgeCommand extends BaseCommand {
     public PurgeCommand() {

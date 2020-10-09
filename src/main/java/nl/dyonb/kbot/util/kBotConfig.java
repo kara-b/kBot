@@ -6,7 +6,7 @@ import io.github.protonmc.tiny_config.Saveable;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.Collections;
 
 public class kBotConfig implements Saveable {
     public ConfigManager configManager;
@@ -18,7 +18,7 @@ public class kBotConfig implements Saveable {
             configManager = new ConfigManager(path);
             configManager.load();
             configManager.loadObject(this);
-            configManager.save(Arrays.asList(this));
+            configManager.save(Collections.singletonList(this));
         } catch (Exception e) {
             e.printStackTrace();
         }
