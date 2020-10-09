@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'nl.dyonb'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url "https://repo.spring.io/milestone" }
+    maven { url "https://nexus.dyonb.nl/repository/maven-public/" }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    implementation 'com.discord4j:discord4j-core:3.2.0-SNAPSHOT'
+    //implementation 'com.discord4j:discord4j-core:3.1.1'
+    implementation 'io.github.classgraph:classgraph:4.8.90'
+
+    implementation "blue.endless:jankson:1.2.0"
+    implementation 'io.github.protonmc:tiny-config:1.0.0'
+}
