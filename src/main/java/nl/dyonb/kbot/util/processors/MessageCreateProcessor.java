@@ -1,4 +1,4 @@
-package nl.dyonb.kbot.processors;
+package nl.dyonb.kbot.util.processors;
 
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
