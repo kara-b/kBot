@@ -1,6 +1,5 @@
 package nl.dyonb.kbot.commands.info;
 
-import discord4j.rest.util.Color;
 import nl.dyonb.kbot.kBot;
 import nl.dyonb.kbot.util.command.BaseCommand;
 import nl.dyonb.kbot.util.command.CommandContext;
@@ -18,7 +17,7 @@ public class AboutCommand extends BaseCommand {
 
     @Override
     public void execute(CommandContext commandContext) {
-        commandContext.replyEmbedBlocking(embedCreateSpec -> 
+        commandContext.replyEmbedBlocking(embedCreateSpec ->
                 embedCreateSpec.setTitle("About kBot")
                         .setDescription("**Bot source**\n" +
                                 kBot.config.bot_source + "\n")
