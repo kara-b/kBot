@@ -1,8 +1,8 @@
-package nl.dyonb.kbot;
+package nl.dyonb.kbot.util.command;
 
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
-import nl.dyonb.kbot.util.command.BaseCommand;
+import nl.dyonb.kbot.kBot;
 
 import java.util.*;
 

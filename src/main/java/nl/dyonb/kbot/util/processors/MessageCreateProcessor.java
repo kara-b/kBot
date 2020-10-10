@@ -4,7 +4,7 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
 import discord4j.rest.util.Permission;
 import discord4j.rest.util.PermissionSet;
-import nl.dyonb.kbot.CommandManager;
+import nl.dyonb.kbot.util.command.CommandManager;
 import nl.dyonb.kbot.kBot;
 import nl.dyonb.kbot.util.command.BaseCommand;
 import nl.dyonb.kbot.util.command.CommandContext;

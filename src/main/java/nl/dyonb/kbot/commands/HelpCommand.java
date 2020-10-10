@@ -1,21 +1,13 @@
 package nl.dyonb.kbot.commands;
 
-import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.Message;
-import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.spec.EmbedCreateSpec;
-import nl.dyonb.kbot.CommandManager;
+import nl.dyonb.kbot.util.command.CommandManager;
 import nl.dyonb.kbot.util.command.BaseCommand;
 import nl.dyonb.kbot.util.command.CommandContext;
 import nl.dyonb.kbot.util.command.CommandInfo;
-import nl.dyonb.kbot.util.kBotUtilities;
-import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Consumer;
 
 public class HelpCommand extends BaseCommand {
     public HelpCommand() {
