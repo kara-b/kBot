@@ -1,4 +1,4 @@
-package nl.dyonb.kbot.commands;
+package nl.dyonb.kbot.commands.info;
 
 import nl.dyonb.kbot.util.command.CommandManager;
 import nl.dyonb.kbot.util.command.BaseCommand;

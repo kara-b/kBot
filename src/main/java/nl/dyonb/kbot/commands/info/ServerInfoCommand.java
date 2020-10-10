@@ -1,4 +1,4 @@
-package nl.dyonb.kbot.commands;
+package nl.dyonb.kbot.commands.info;
 
 import discord4j.core.object.entity.Guild;
 import discord4j.core.object.entity.Member;

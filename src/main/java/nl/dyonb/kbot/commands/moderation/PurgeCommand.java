@@ -1,4 +1,4 @@
-package nl.dyonb.kbot.commands;
+package nl.dyonb.kbot.commands.moderation;
 
 import discord4j.core.object.entity.Message;
 import discord4j.rest.util.Permission;
