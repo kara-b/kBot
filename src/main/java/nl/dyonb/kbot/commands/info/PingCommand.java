@@ -14,6 +14,7 @@ public class PingCommand extends BaseCommand {
 
     @Override
     public void execute(CommandContext commandContext) {
-        commandContext.replyBlocking("Pong!");
+        final long start = System.currentTimeMillis();
+        commandContext.reply("Pinging..").subscribe(message -> message.edit(messageEditSpec -> messageEditSpec.setContent("Pong!\n" + (System.currentTimeMillis() - start) + "ms")).block());
     }
 }
