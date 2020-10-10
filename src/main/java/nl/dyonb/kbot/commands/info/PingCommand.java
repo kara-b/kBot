@@ -14,7 +14,16 @@ public class PingCommand extends BaseCommand {
 
     @Override
     public void execute(CommandContext commandContext) {
+        // Absolutely cursed, No one should ever do this.
+        String executedCommand = commandContext.getSplitMessage().get(0).toLowerCase();
+        int index = this.getCommandInfo().getNames().indexOf(executedCommand);
+        if (index == 1) index = 0;
+        else if (index == 0) index = 1;
+        String finalExecutedCommand = this.getCommandInfo().getNames().get(index);
+
         final long start = System.currentTimeMillis();
-        commandContext.reply("Pinging..").subscribe(message -> message.edit(messageEditSpec -> messageEditSpec.setContent("Pong!\n" + (System.currentTimeMillis() - start) + "ms")).block());
+        commandContext.reply(finalExecutedCommand + "ing..").subscribe(message -> message.edit(
+                        messageEditSpec -> messageEditSpec.setContent(finalExecutedCommand + "!\n" + (System.currentTimeMillis() - start) + "ms"))
+                        .block());
     }
 }

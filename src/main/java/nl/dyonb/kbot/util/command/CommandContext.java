@@ -18,6 +18,7 @@ public class CommandContext {
     private final Message message;
     private final MessageChannel channel;
     private final Guild guild;
+    private final List<String> splitMessage;
     private final List<String> args;
     private final Member invokerMember;
     private final Member botMember;
@@ -26,6 +27,7 @@ public class CommandContext {
         message = event.getMessage();
         channel = message.getChannel().blockOptional().orElseThrow();
         guild = message.getGuild().blockOptional().orElseThrow();
+        splitMessage = kBotUtilities.splitMessage(message);
         args = kBotUtilities.extractArguments(message);
         invokerMember = event.getMember().orElseThrow();
         botMember = guild.getMemberById(event.getClient().getSelfId()).blockOptional().orElseThrow();
@@ -41,6 +43,10 @@ public class CommandContext {
 
     public Guild getGuild() {
         return guild;
+    }
+
+    public List<String> getSplitMessage() {
+        return splitMessage;
     }
 
     public List<String> getArgs() {
