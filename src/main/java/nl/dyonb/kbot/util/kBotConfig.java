@@ -18,7 +18,7 @@ public class kBotConfig implements Saveable {
             configManager = new ConfigManager(path);
             configManager.load();
             configManager.loadObject(this);
-            configManager.save(Collections.singletonList(this));
+            configManager.save(Collections.singleton(this));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -29,6 +29,7 @@ public class kBotConfig implements Saveable {
         return "kbot";
     }
 
-    @Configurable
-    public String token = "";
+    @Configurable public String token = "";
+
+    @Configurable public String bot_source = "https://github.com/kara-b/kBot";
 }
