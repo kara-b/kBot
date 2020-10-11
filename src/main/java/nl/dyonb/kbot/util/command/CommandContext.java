@@ -15,22 +15,21 @@ import java.util.function.Consumer;
 
 public class CommandContext {
 
+    private final MessageCreateEvent event;
     private final Message message;
-    private final MessageChannel channel;
-    private final Guild guild;
+    private MessageChannel channel;
+    private Guild guild;
     private final List<String> splitMessage;
     private final List<String> args;
     private final Member invokerMember;
-    private final Member botMember;
+    private Member botMember;
 
     public CommandContext(MessageCreateEvent event) {
+        this.event = event;
         message = event.getMessage();
-        channel = message.getChannel().blockOptional().orElseThrow();
-        guild = message.getGuild().blockOptional().orElseThrow();
         splitMessage = kBotUtilities.splitMessage(message);
         args = kBotUtilities.extractArguments(message);
         invokerMember = event.getMember().orElseThrow();
-        botMember = guild.getMemberById(event.getClient().getSelfId()).blockOptional().orElseThrow();
     }
 
     public Message getMessage() {
@@ -38,10 +37,14 @@ public class CommandContext {
     }
 
     public MessageChannel getChannel() {
+        if (channel == null)
+            channel = getMessage().getChannel().block();
         return channel;
     }
 
     public Guild getGuild() {
+        if (guild == null)
+            guild = getMessage().getGuild().block();
         return guild;
     }
 
@@ -58,11 +61,13 @@ public class CommandContext {
     }
 
     public Member getBotMember() {
+        if (botMember == null)
+            botMember = getGuild().getMemberById(event.getClient().getSelfId()).block();
         return botMember;
     }
 
     public Mono<Message> reply(String text) {
-        return channel.createMessage(text);
+        return getChannel().createMessage(text);
     }
 
     public Message replyBlocking(String text) {
@@ -70,7 +75,7 @@ public class CommandContext {
     }
 
     public Mono<Message> replyEmbed(Consumer<EmbedCreateSpec> consumer) {
-        return channel.createEmbed(consumer);
+        return getChannel().createEmbed(consumer);
     }
 
     public Message replyEmbedBlocking(Consumer<EmbedCreateSpec> consumer) {
