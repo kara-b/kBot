@@ -38,13 +38,13 @@ public class CommandContext {
 
     public MessageChannel getChannel() {
         if (channel == null)
-            channel = getMessage().getChannel().block();
+            channel = getMessage().getChannel().blockOptional().orElseThrow();
         return channel;
     }
 
     public Guild getGuild() {
         if (guild == null)
-            guild = getMessage().getGuild().block();
+            guild = getMessage().getGuild().blockOptional().orElseThrow();
         return guild;
     }
 
@@ -62,7 +62,7 @@ public class CommandContext {
 
     public Member getBotMember() {
         if (botMember == null)
-            botMember = getGuild().getMemberById(event.getClient().getSelfId()).block();
+            botMember = getGuild().getMemberById(event.getClient().getSelfId()).blockOptional().orElseThrow();
         return botMember;
     }
 
