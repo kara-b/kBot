@@ -4,6 +4,7 @@ import nl.dyonb.kbot.util.command.CommandManager;
 import nl.dyonb.kbot.util.command.BaseCommand;
 import nl.dyonb.kbot.util.command.CommandContext;
 import nl.dyonb.kbot.util.command.CommandInfo;
+import nl.dyonb.kbot.util.kBotUtilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,8 @@ public class HelpCommand extends BaseCommand {
             commandContext.replyEmbedBlocking(embedCreateSpec -> {
                 embedCreateSpec.setTitle("Help for " + baseCommand.getCommandInfo().getNames().get(0))
                         .setDescription("**" + String.join(", ", baseCommand.getCommandInfo().getNames()) + "**\n"
-                                + baseCommand.getCommandInfo().getDescription());
+                                + baseCommand.getCommandInfo().getDescription())
+                        .setColor(kBotUtilities.randomBrightColor());
             });
             return;
         }
@@ -46,7 +48,8 @@ public class HelpCommand extends BaseCommand {
         });
 
         commandContext.replyEmbedBlocking(embedCreateSpec -> {
-            embedCreateSpec.setDescription(String.join("\n", nonDuplicateCommands));
+            embedCreateSpec.setDescription(String.join("\n", nonDuplicateCommands))
+                    .setColor(kBotUtilities.randomBrightColor());
         });
     }
 }

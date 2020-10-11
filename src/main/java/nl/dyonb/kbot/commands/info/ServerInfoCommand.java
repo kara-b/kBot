@@ -10,6 +10,7 @@ import discord4j.rest.util.Image;
 import nl.dyonb.kbot.util.command.BaseCommand;
 import nl.dyonb.kbot.util.command.CommandContext;
 import nl.dyonb.kbot.util.command.CommandInfo;
+import nl.dyonb.kbot.util.kBotUtilities;
 
 import java.util.List;
 
@@ -40,7 +41,8 @@ public class ServerInfoCommand extends BaseCommand {
                     .addField("Region", guild.getRegion().block().getName(), true)
                     .addField("Channels", String.format("**Voice:** %d%n**Text:** %d", voiceChannels, textChannels), true)
                     .addField("Members", String.format("**Total:** %d%n**Humans:** %d%n**Bots:** %d", humanAmount+botAmount, humanAmount, botAmount), true)
-                    .setFooter(String.format("ID: %s", guild.getId().asString()), "");
+                    .setFooter(String.format("ID: %s", guild.getId().asString()), "")
+                    .setColor(kBotUtilities.randomBrightColor());
         });
     }
 }
