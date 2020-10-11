@@ -10,13 +10,15 @@ public class CommandInfo {
     private final boolean isEnabled;
     private final PermissionSet botPermissions;
     private final PermissionSet userPermissions;
+    private final boolean botOwnerOnly;
 
-    public CommandInfo(List<String> names, String description, boolean isEnabled, PermissionSet botPermissions, PermissionSet userPermissions) {
+    public CommandInfo(List<String> names, String description, boolean isEnabled, PermissionSet botPermissions, PermissionSet userPermissions, boolean botOwnerOnly) {
         this.names = names;
         this.description = description;
         this.isEnabled = isEnabled;
         this.botPermissions = botPermissions;
         this.userPermissions = userPermissions;
+        this.botOwnerOnly = botOwnerOnly;
     }
 
     public List<String> getNames() {
@@ -39,6 +41,10 @@ public class CommandInfo {
         return userPermissions;
     }
 
+    public boolean isBotOwnerOnly() {
+        return botOwnerOnly;
+    }
+
     public static class Builder {
         private Class<? extends BaseCommand> commandClass;
         private List<String> names;
@@ -46,6 +52,7 @@ public class CommandInfo {
         private boolean isEnabled;
         private PermissionSet botPermissions;
         private PermissionSet userPermissions;
+        private boolean botOwnerOnly;
 
         public Builder(Class<? extends BaseCommand> commandClass) {
             this.commandClass = commandClass;
@@ -54,6 +61,7 @@ public class CommandInfo {
             this.isEnabled = true;
             this.botPermissions = PermissionSet.none();
             this.userPermissions = PermissionSet.none();
+            this.botOwnerOnly = false;
         }
 
         public Builder setNames(List<String> names) {
@@ -87,8 +95,13 @@ public class CommandInfo {
             return this;
         }
 
+        public Builder setBotOwnerOnly(boolean botOwnerOnly) {
+            this.botOwnerOnly = botOwnerOnly;
+            return this;
+        }
+
         public CommandInfo createCommandInfo() {
-            return new CommandInfo(names, description, isEnabled, botPermissions, userPermissions);
+            return new CommandInfo(names, description, isEnabled, botPermissions, userPermissions, botOwnerOnly);
         }
     }
 }

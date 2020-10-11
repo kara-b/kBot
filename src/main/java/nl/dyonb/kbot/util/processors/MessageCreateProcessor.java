@@ -24,11 +24,14 @@ public class MessageCreateProcessor {
         String commandName = kBotUtilities.splitMessage(message).get(0);
         BaseCommand command = CommandManager.getInstance().getCommand(commandName);
         CommandContext commandContext = new CommandContext(messageCreateEvent);
+
         if (command == null) {
             commandContext.replyBlocking("Command not found!");
         } else if (!command.getCommandInfo().isEnabled()) {
             commandContext.replyBlocking("Command isn't enabled!");
         } else if (!hasPermissions(command, commandContext)) {
+            return;
+        } else if (command.getCommandInfo().isBotOwnerOnly() && !commandContext.getInvokerMember().getId().equals(kBot.ownerId)) {
             return;
         } else {
             command.execute(commandContext);
