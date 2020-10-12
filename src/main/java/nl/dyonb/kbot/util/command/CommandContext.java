@@ -24,11 +24,11 @@ public class CommandContext {
     private final Member invokerMember;
     private Member botMember;
 
-    public CommandContext(MessageCreateEvent event) {
+    public CommandContext(MessageCreateEvent event, String prefix) {
         this.event = event;
         message = event.getMessage();
-        splitMessage = kBotUtilities.splitMessage(message);
-        args = kBotUtilities.extractArguments(message);
+        splitMessage = kBotUtilities.splitMessage(message, prefix);
+        args = kBotUtilities.extractArguments(message, prefix);
         invokerMember = event.getMember().orElseThrow();
     }
 

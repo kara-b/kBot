@@ -9,15 +9,14 @@ import java.util.Random;
 
 public class kBotUtilities {
 
-    public static List<String> splitMessage(Message message) {
-        String prefix = kBot.prefix;
+    public static List<String> splitMessage(Message message, String prefix) {
         String content = message.getContent().substring(prefix.length());
 
         return new java.util.ArrayList<>(List.of(content.split(" ")));
     }
 
-    public static List<String> extractArguments(Message message) {
-        List<String> list = splitMessage(message);
+    public static List<String> extractArguments(Message message, String prefix) {
+        List<String> list = splitMessage(message, prefix);
         list.remove(0);
         return list;
     }

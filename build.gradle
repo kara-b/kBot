@@ -20,6 +20,8 @@ dependencies {
     //implementation 'com.discord4j:discord4j-core:3.1.1'
     implementation 'io.github.classgraph:classgraph:4.8.90'
 
-    implementation "blue.endless:jankson:1.2.0"
+    implementation 'blue.endless:jankson:1.2.0'
     implementation 'io.github.protonmc:tiny-config:1.0.1'
+
+    implementation 'org.mongodb:mongodb-driver-reactivestreams:1.13.1'
 }

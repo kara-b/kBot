@@ -30,6 +30,12 @@ public class kBotConfig implements Saveable {
     }
 
     @Configurable public String token = "";
+    @Configurable public String defaultPrefix = "k!";
 
     @Configurable public String bot_source = "https://github.com/kara-b/kBot";
+    @Configurable public String supportServer = "https://discord.gg/qzGj4En";
+
+    @Configurable public String mongoConnectionString = "mongodb://127.0.0.1:27017/";
+    @Configurable public String mongoDatabaseName = "";
+    @Configurable public String mongoGuildsName = "guilds";
 }
