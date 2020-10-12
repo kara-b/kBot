@@ -6,6 +6,7 @@ import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
+import discord4j.rest.util.Color;
 import nl.dyonb.kbot.util.kBotUtilities;
 import reactor.core.publisher.Mono;
 
@@ -67,6 +68,10 @@ public class CommandContext {
     }
 
     public Mono<Message> reply(String text) {
+        if (text.length() > 2000) {
+            return replyEmbed(embedCreateSpec -> embedCreateSpec.setTitle("Error: Message length too long.").setColor(Color.RED));
+        }
+
         return getChannel().createMessage(text);
     }
 
