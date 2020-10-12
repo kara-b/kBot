@@ -23,13 +23,10 @@ public class DatabaseGuild extends SerializableEntity<DatabaseGuildBean> {
     }
 
     public Mono<Void> insert() {
-        kBot.DEFAULT_LOGGER.info("[DatabaseGuild {}] Inserting/Updating...",
-                this.getId().asLong());
-
         return Mono.from(DatabaseManager.getGuilds()
                 .getCollection()
                 .replaceOne(Filters.eq("_id", this.getId().asString()), this.toDocument(), new ReplaceOptions().upsert(true)))
-                .doOnNext(updateResult -> kBot.DEFAULT_LOGGER.info("[DatabaseGuild {}] Update/Insertion result: {}",
+                .doOnNext(updateResult -> kBot.DEFAULT_LOGGER.debug("[DatabaseGuild {}] Update/Insertion result: {}",
                         this.getId().asLong(), updateResult))
                 .then();
     }
@@ -38,7 +35,7 @@ public class DatabaseGuild extends SerializableEntity<DatabaseGuildBean> {
         return Mono.from(DatabaseManager.getGuilds()
                 .getCollection()
                 .deleteOne(Filters.eq("_id", this.getId().asString())))
-                .doOnNext(result -> kBot.DEFAULT_LOGGER.info("[DatabaseGuild {}] Deletion result: {}", this.getId().asLong(), result))
+                .doOnNext(result -> kBot.DEFAULT_LOGGER.debug("[DatabaseGuild {}] Deletion result: {}", this.getId().asLong(), result))
                 .then();
     }
 
