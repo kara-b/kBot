@@ -20,7 +20,9 @@ public class AboutCommand extends BaseCommand {
         commandContext.replyEmbedBlocking(embedCreateSpec ->
                 embedCreateSpec.setTitle("About kBot")
                         .setDescription("**Bot source**\n" +
-                                kBot.config.bot_source + "\n")
+                                kBot.config.bot_source + "\n" +
+                                "**Support server**\n" +
+                                kBot.config.supportServer + "\n")
                         .setThumbnail(commandContext.getBotMember().getAvatarUrl())
                         .setColor(kBotUtilities.randomBrightColor()));
     }
