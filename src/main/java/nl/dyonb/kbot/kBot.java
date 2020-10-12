@@ -27,21 +27,16 @@ public class kBot {
     private static GatewayDiscordClient gateway;
     public static kBotConfig config;
     public static Snowflake ownerId;
+    public static Snowflake botId;
 
     public static void main(String[] args) {
         config = new kBotConfig("kbot.json5");
 
         DiscordClient discordClient = DiscordClientBuilder.create(config.token).build();
 
-        discordClient.getApplicationInfo()
-                .map(ApplicationInfoData::owner)
-                .map(UserData::id)
-                .map(Snowflake::of)
-                .doOnNext(ownerId -> {
-                    DEFAULT_LOGGER.info("Owner ID acquired: {}", ownerId);
-                    kBot.ownerId = ownerId;
-                })
-                .block();
+        ApplicationInfoData applicationInfoData = discordClient.getApplicationInfo().block();
+        botId = Snowflake.of(applicationInfoData.id());
+        ownerId = Snowflake.of(applicationInfoData.owner().id());
 
         discordClient.gateway()
                 .setInitialStatus(shardInfo -> Presence.online(Activity.listening("people")))

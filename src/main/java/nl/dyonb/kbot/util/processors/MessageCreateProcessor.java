@@ -25,6 +25,10 @@ public class MessageCreateProcessor {
 
         Message message = messageCreateEvent.getMessage();
 
+        if (message.getContent().startsWith(String.format("<@!%s> ", kBot.botId.asString()))) {
+            prefix = String.format("<@!%s> ", kBot.botId.asString());
+        }
+
         // If message doesn't start with prefix or message author is a bot
         if (!message.getContent().startsWith(prefix) || !message.getAuthor().map(user -> !user.isBot()).orElse(false)) {
             return Mono.empty();
