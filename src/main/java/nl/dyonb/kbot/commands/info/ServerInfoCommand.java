@@ -18,7 +18,7 @@ public class ServerInfoCommand extends BaseCommand {
     public ServerInfoCommand() {
         super(new CommandInfo.Builder(ServerInfoCommand.class)
                 .setDescription("Provides info about the server")
-                .setNames(List.of("server", "serverinfo")));
+                .setNames(List.of("serverinfo", "server")));
     }
 
     @Override
